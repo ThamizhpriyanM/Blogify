@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -14,6 +15,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+
 
     @GetMapping("/login")
     public String showLoginForm(HttpSession session) {
@@ -44,4 +47,28 @@ public class UserController {
         userService.createUser(userDTO);
         return "redirect:/login";
     }
+
+
+    @GetMapping("/home")
+    public String homePage() {
+        return "home";
+    }
+
+    @GetMapping("/create")
+    public String createPage() {
+        return "create";
+    }
+
+    @GetMapping("/getAll")
+    public String getAllPage() {
+        return "getAll";
+    }
+
+
+        @GetMapping("/logout")
+        public String logout(HttpServletRequest request, HttpSession session) {
+            session.invalidate();
+            return "login";
+    }
+
 }
