@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogify</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            width: 250px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            float: left;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            margin-bottom: 10px;
+        }
+        iframe {
+            border: none;
+            width: calc(100% - 280px);
+            height: 100vh;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Blogify</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="create.html" target="content">Create Post</a></li>
+        <li><a href="view.html" target="content">View Posts</a></li>
+        <li><a href="update.html" target="content">Update Post</a></li>
+        <li><a href="delete.html" target="content">Delete Post</a></li>
+    </ul>
+</nav>
+<iframe name="content" src="create.html"></iframe>
+</body>
+</html>

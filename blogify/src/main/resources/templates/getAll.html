@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>All Blog Posts</title>
+    <title>All Blog Post</title>
     <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
 </head>
 <body>
-<h1>All Blog Posts</h1>
+<h1>All Blog Post</h1>
 <ul>
     <li th:each="post : ${posts}">
         <h2 th:text="${post.title}">Post Title</h2>

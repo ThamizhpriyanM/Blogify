@@ -14,6 +14,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Document(collection = "posts")
 public class BlogPost {
+
     @Id
     private String id;
     private String title;
