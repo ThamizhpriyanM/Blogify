@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Blog Posts</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+</head>
+<body>
+<h1>All Blog Posts</h1>
+<ul>
+    <li th:each="post : ${posts}">
+        <h2 th:text="${post.title}">Post Title</h2>
+        <p th:text="${post.content}">Post Content</p>
+        <p><strong>Author: </strong><span th:text="${post.author}">Post Author</span></p>
+    </li>
+</ul>
+</body>
+</html>

@@ -18,7 +18,7 @@ public class UserController {
     @GetMapping("/login")
     public String showLoginForm(HttpSession session) {
         if (session.getAttribute("username") != null) {
-            return "redirect:/families";
+            return "redirect:/getAll";
         }
         return "login";
     }
@@ -27,7 +27,7 @@ public class UserController {
     public String login(UserDTO userDTO, HttpSession session) {
         if (userService.verifyUser(userDTO)) {
             session.setAttribute("username", userDTO.getUsername());
-            return "redirect:/families";
+            return "redirect:/getAll";
         }
         else {
             return "redirect:/login?error";
