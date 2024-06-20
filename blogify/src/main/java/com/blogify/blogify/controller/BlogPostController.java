@@ -12,26 +12,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("/api/posts")
+@Controller
 @AllArgsConstructor
 public class BlogPostController {
          BlogService blogService;
 
-    @GetMapping
-    public ResponseEntity<List<BlogPost>> getAllPosts() {
-        try {
-            List<BlogPost> posts = blogService.getAllPosts();
-            if (posts.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(posts, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @GetMapping("/getAll")
+    public String getAllPosts(Model model) {
+        List<BlogPost> posts = blogService.getAllPosts();
+        model.addAttribute("posts", posts);
+        return "getAll";
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<BlogPost> createPost(@RequestBody BlogPost blogPost) {
         try {
             BlogPost newPost = blogService.createPost(blogPost);
@@ -51,7 +44,7 @@ public class BlogPostController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<BlogPost> updatePost(@PathVariable("id") String id, @RequestBody BlogPost blogPost) {
         Optional<BlogPost> postData = blogService.getPostByID(id);
 
@@ -60,12 +53,12 @@ public class BlogPostController {
             existingPost.setTitle(blogPost.getTitle());
             existingPost.setContent(blogPost.getContent());
             existingPost.setAuthor(blogPost.getAuthor());
-            return new ResponseEntity<>(blogService.updatePost(existingPost,id), HttpStatus.OK);
+            return new ResponseEntity<>(blogService.updatePost(existingPost, id), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-@DeleteMapping("/{id}")
+@DeleteMapping("/delete/{id}")
 public ResponseEntity<HttpStatus> deletePost(@PathVariable("id") String id) {
     try {
         blogService.deletePost(id);

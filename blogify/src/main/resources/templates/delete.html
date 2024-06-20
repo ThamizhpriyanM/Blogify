@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Delete Blog Post</title>
+</head>
+<body>
+<h1>Delete Blog Post</h1>
+<p>Are you sure you want to delete this post?</p>
+<form action="/delete" method="post">
+    <input type="hidden" id="postId" name="id" value="">
+    <div>
+        <button type="submit">Yes, Delete</button>
+    </div>
+</form>
+</body>
+</html>

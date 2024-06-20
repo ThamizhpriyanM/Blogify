@@ -59,9 +59,14 @@ public class UserController {
         return "create";
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/update")
     public String getAllPage() {
-        return "getAll";
+        return "update";
+    }
+
+    @GetMapping("/delete")
+    public String deletePage() {
+        return "delete";
     }
 
 

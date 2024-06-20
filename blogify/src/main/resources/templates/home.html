@@ -28,9 +28,11 @@
         }
         nav {
             width: 250px;
-            background-color: #f0f0f0;
+            background-color: #f8f9fa;
             padding: 20px;
             flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-right: 1px solid #ddd;
         }
         nav ul {
             list-style-type: none;
@@ -42,9 +44,10 @@
         nav ul li a {
             color: #007bff;
             text-decoration: none;
-            padding: 10px;
+            padding: 12px 15px;
             display: block;
-            border-radius: 0.25rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         nav ul li a:hover {
             background-color: #007bff;
@@ -67,9 +70,9 @@
         <ul>
             <li><a href="/create" target="content">Create Block</a></li>
             <li><a href="/getAll" target="content">View Blocks</a></li>
-            <li><a href="update.html" target="content">Update Block</a></li>
-            <li><a href="delete.html" target="content">Delete block</a></li>
-            <li><a href="/logout" >Logout</a></li>
+            <!-- <li><a href="/update" target="content">Update Block</a></li>
+            <li><a href="/delete" target="content">Delete block</a></li> -->
+            <li><a href="/logout">Logout</a></li>
         </ul>
     </nav>
     <iframe name="content" src="create.html"></iframe>
