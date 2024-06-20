@@ -58,6 +58,16 @@ public class BlogPostController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("/edit/{id}")
+    public String editPostForm(@PathVariable("id") String id, Model model) {
+        Optional<BlogPost> optionalPost = blogService.getPostByID(id);
+        if (optionalPost.isPresent()) {
+            model.addAttribute("post", optionalPost.get());
+            return "update";
+        } else {
+            return "redirect:/getAll";
+        }
+    }
 @DeleteMapping("/delete/{id}")
 public ResponseEntity<HttpStatus> deletePost(@PathVariable("id") String id) {
     try {
