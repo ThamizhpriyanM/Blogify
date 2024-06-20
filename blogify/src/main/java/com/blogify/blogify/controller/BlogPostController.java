@@ -68,14 +68,14 @@ public class BlogPostController {
             return "redirect:/getAll";
         }
     }
-@DeleteMapping("/delete/{id}")
-public ResponseEntity<HttpStatus> deletePost(@PathVariable("id") String id) {
-    try {
-        blogService.deletePost(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    } catch (Exception e) {
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deletePost(@PathVariable("id") String id) {
+        try {
+            blogService.deletePost(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
-}
 
 }
