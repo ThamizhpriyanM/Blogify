@@ -44,6 +44,9 @@
 </head>
 <body>
 <h1>All Blog Posts</h1>
+<div th:if="${errorMessage}" style="color: red;">
+    <p th:text="${errorMessage}"></p>
+</div>
 <div th:each="post : ${posts}" class="post-container">
     <h2 class="post-title" th:text="${post.title}">Post Title</h2>
     <p class="post-content" th:text="${post.content}">Post Content</p>
