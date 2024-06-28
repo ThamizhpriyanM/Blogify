@@ -56,6 +56,11 @@
         button:hover {
             background-color: #0056b3;
         }
+    #content {
+        height: calc(22 * 1.2em);
+        width: calc(30 * 1.2em);
+        box-sizing: border-box;
+    }
     </style>
 </head>
 <body>
@@ -69,7 +74,7 @@
         </div>
         <div>
             <label for="content">Content:</label>
-            <input type="text" name="content" th:value="${post.content}" required/>
+            <textarea id="content" name="content" rows="22" cols="30" required th:text="${post.content}"></textarea>
         </div>
         <div>
             <label for="author">Author:</label>
@@ -104,7 +109,7 @@
 
             if (response.ok) {
                 alert('Blog post updated successfully!');
-                window.location.href = '/getAll';
+                window.location.href = '/getAll'; // Redirect to getAll.html page
             } else {
                 throw new Error('Failed to update blog post.');
             }

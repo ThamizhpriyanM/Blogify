@@ -20,10 +20,10 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-    public void createUser(UserDTO userDTO) {
-        User newUser = new User(userDTO.getUsername(), userDTO.getPassword());
-        userRepository.save(newUser);
-    }
+//    public void createUser(UserDTO userDTO) {
+//        User newUser = new User(userDTO.getUsername(), userDTO.getPassword());
+//        userRepository.save(newUser);
+//    }
     public boolean verifyUser(UserDTO userDTO) {
         User user = userRepository.findByUsername(userDTO.getUsername());
         return user != null && user.getPassword().equals(userDTO.getPassword());

@@ -1,6 +1,6 @@
 
 server:
-  port: 8100
+  port: 8080
   error:
     include-message: always
 

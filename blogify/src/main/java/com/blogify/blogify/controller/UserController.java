@@ -16,25 +16,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
-
     @GetMapping("/login")
-    public String showLoginForm(HttpSession session) {
-        if (session.getAttribute("username") != null) {
-            return "redirect:/home";
-        }
+    public String login() {
         return "login";
-    }
-
-    @PostMapping("/login")
-    public String login(UserDTO userDTO, HttpSession session) {
-        if (userService.verifyUser(userDTO)) {
-            session.setAttribute("username", userDTO.getUsername());
-            return "redirect:/home";
-        }
-        else {
-            return "redirect:/login?error";
-        }
     }
 
     @GetMapping("/register")
@@ -42,11 +26,11 @@ public class UserController {
         return "register";
     }
 
-    @PostMapping("/register")
-    public String register(UserDTO userDTO) {
-        userService.createUser(userDTO);
-        return "redirect:/login";
-    }
+//    @PostMapping("/register")
+//    public String register(UserDTO userDTO) {
+//        userService.createUser(userDTO);
+//        return "redirect:/login";
+//    }
 
 
     @GetMapping("/home")
