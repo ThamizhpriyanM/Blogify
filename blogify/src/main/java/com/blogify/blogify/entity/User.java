@@ -7,16 +7,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Document(collection = "authenticate")
 public class User {
 
     @Id
-    private String id;
+    private ObjectId id;
     private String username;
     private String password;
-    private String[] roles;
 
+    public User() {
+    }
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }
