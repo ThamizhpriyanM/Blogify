@@ -1,6 +1,7 @@
 package com.blogify.blogify.controller;
 
 import com.blogify.blogify.entity.BlogPost;
+import com.blogify.blogify.entity.User;
 import com.blogify.blogify.service.BlogService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -66,6 +67,15 @@ public class adminController {
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
+    }
+    @GetMapping("/user/{username}/posts")
+    public String showPostsByAuthor(@PathVariable("username") String username, Model model) {
+        List<BlogPost> posts = blogService.getPostsByAuthor(username);
+        if (posts.isEmpty()) {
+            model.addAttribute("errorMessage", "No posts found for author: " + username);
+        }
+        model.addAttribute("posts", posts);
+        return "posts_by_author";
     }
 
 }

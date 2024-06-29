@@ -1,17 +1,22 @@
 package com.blogify.blogify.controller;
 
 import com.blogify.blogify.Dto.UserDTO;
+import com.blogify.blogify.entity.BlogPost;
 import com.blogify.blogify.entity.User;
+import com.blogify.blogify.service.BlogService;
 import com.blogify.blogify.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -104,5 +109,12 @@ public class UserController {
         }
         return "adminhome";
     }
+    @GetMapping("/users")
+    public String listUsers(Model model) {
+        List<User> users = userService.getUsersByRole("user");
+        model.addAttribute("users", users);
+        return "user_list";
+    }
+
 
 }

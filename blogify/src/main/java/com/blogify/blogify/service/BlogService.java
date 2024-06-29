@@ -1,9 +1,9 @@
 package com.blogify.blogify.service;
 
 import com.blogify.blogify.entity.BlogPost;
+import com.blogify.blogify.entity.User;
 import com.blogify.blogify.repository.BlogPostRepository;
 import lombok.AllArgsConstructor;
-import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,5 +41,8 @@ public class BlogService {
 
     public void deletePost(String id){
         blogPostRepository.deleteById(id);
+    }
+    public List<BlogPost> getPostsByAuthor(String author){
+        return blogPostRepository.findByAuthor(author);
     }
 }
