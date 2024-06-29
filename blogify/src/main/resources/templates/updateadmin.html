@@ -99,7 +99,7 @@
         };
 
         try {
-            const response = await fetch(`/update/${postId}`, {
+            const response = await fetch(`/updateadmin/${postId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -109,7 +109,7 @@
 
             if (response.ok) {
                 alert('Blog post updated successfully!');
-                window.location.href = '/getAll';
+                window.location.href = '/getAlladmin';
             } else {
                 throw new Error('Failed to update blog post.');
             }

@@ -17,14 +17,14 @@ import java.util.Optional;
 public class adminController {
     BlogService blogService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/getAlladmin")
     public String getAllPosts(Model model) {
         List<BlogPost> posts = blogService.getAllPosts();
         model.addAttribute("posts", posts);
-        return "getAll";
+        return "getAlladmin";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/createadmin")
     public ResponseEntity<BlogPost> createPost(@RequestBody BlogPost blogPost) {
         try {
             BlogPost newPost = blogService.createPost(blogPost);
@@ -33,18 +33,8 @@ public class adminController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/{id}")
-    public ResponseEntity<BlogPost> getPostById(@PathVariable("id") String id) {
-        Optional<BlogPost> postData = blogService.getPostByID(id);
 
-        if (postData.isPresent()) {
-            return new ResponseEntity<>(postData.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @PutMapping("/update/{id}")
+    @PutMapping("/updateadmin/{id}")
     public ResponseEntity<BlogPost> updatePost(@PathVariable("id") String id, @RequestBody BlogPost blogPost) {
         Optional<BlogPost> postData = blogService.getPostByID(id);
 
@@ -58,17 +48,17 @@ public class adminController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editadmin/{id}")
     public String editPostForm(@PathVariable("id") String id, Model model) {
         Optional<BlogPost> optionalPost = blogService.getPostByID(id);
         if (optionalPost.isPresent()) {
             model.addAttribute("post", optionalPost.get());
-            return "update";
+            return "updateadmin";
         } else {
-            return "redirect:/getAll";
+            return "redirect:/getAlladmin";
         }
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deleteadmin/{id}")
     public ResponseEntity<Void> deletePost(@PathVariable("id") String id) {
         try {
             blogService.deletePost(id);

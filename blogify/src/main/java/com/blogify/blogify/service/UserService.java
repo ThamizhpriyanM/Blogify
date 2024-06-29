@@ -21,11 +21,17 @@ public class UserService {
         return userRepository.findAll();
     }
     public void createUser(UserDTO userDTO) {
-        User newUser = new User(userDTO.getUsername(), userDTO.getPassword());
-        userRepository.save(newUser);
+        User user = new User();
+        user.setUsername(userDTO.getUsername());
+        user.setPassword(userDTO.getPassword());
+        user.setRole(userDTO.getRole());
+        userRepository.save(user);
     }
     public boolean verifyUser(UserDTO userDTO) {
         User user = userRepository.findByUsername(userDTO.getUsername());
-        return user != null && user.getPassword().equals(userDTO.getPassword());
+        return user != null && user.getPassword().equals(userDTO.getPassword()) && user.getRole().equals(userDTO.getRole());
+    }
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }
